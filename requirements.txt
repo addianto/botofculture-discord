@@ -1,1 +1,2 @@
 discord.py==1.3.3
+PixivPy-Async==1.2.10
