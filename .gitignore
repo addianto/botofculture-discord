@@ -209,3 +209,6 @@ dmypy.json
 
 # venv virtual environment directory
 env/
+
+# .env environment variables file
+.env
