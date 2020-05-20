@@ -18,8 +18,8 @@ logging.basicConfig(
     format='%(asctime)s | %(levelname)s | %(name)s | %(filename)s#%(funcName)s()#L%(lineno)d | %(message)s',  # noqa
     level=logging.DEBUG if DEBUG else logging.INFO
 )
-logging.info(f'Debug mode: {DEBUG}')
 
 
 def run():
+    logging.info(f'Running in debug mode? {DEBUG}')
     bot.run(DISCORD_TOKEN)
