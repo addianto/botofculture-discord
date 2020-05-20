@@ -21,5 +21,6 @@ logging.basicConfig(
 
 
 def run():
-    logging.info(f'Running in debug mode? {DEBUG}')
+    logging.info(f'You are running {__title__} v{__version__}')
+    logging.info(f'Debug mode: {"enabled" if DEBUG else "disabled"}')
     bot.run(DISCORD_TOKEN)
