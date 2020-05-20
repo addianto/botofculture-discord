@@ -7,12 +7,11 @@ __copyright__ = f'Copyright (c) 2020 {__author__}'
 __license__ = 'MIT'
 __version__ = '0.1.0'
 
-from . import bot
+from . import bot, config
 import logging
-import os
 
-DEBUG = True if os.getenv('DEBUG', 'False') == 'True' else False
-DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+DEBUG = config.get('DEBUG')
+DISCORD_TOKEN = config.get('DISCORD_TOKEN')
 
 logging.basicConfig(
     datefmt='%Y-%m-%dT%H:%M:%S%z',
