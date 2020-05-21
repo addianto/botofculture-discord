@@ -1,3 +1,4 @@
+from . import pixiv
 import discord
 import logging
 import sys
@@ -6,7 +7,7 @@ client = discord.Client()
 
 @client.event
 async def on_error(event: str, *args, **kwargs):
-    logging.error(f'Encountered error: {event}',
+    logging.error(f'Encountered error on event {event}',
                   exc_info=sys.exc_info(),
                   stack_info=True)
 
@@ -18,6 +19,8 @@ async def on_message(message: discord.Message):
 
     logging.debug(f'{message.author.name} AKA {message.author.display_name} at {message.guild.name}')  # noqa
     logging.debug(f'> {message.content}')
+
+    await pixiv.handle(message)
 
 
 @client.event
