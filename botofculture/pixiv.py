@@ -36,12 +36,10 @@ async def handle(message: discord.Message):
 
     for work in works:
         image_urls = get_image_urls(work)
+        is_nsfw = True if work.age_limit != 'all-age' else False
 
-        await message.channel.send(f'''
-            **Title**: {work.title}
-            **Author**: {work.user.name}
-            **Tags**: {', '.join(work.tags)}
-        ''')
+        # TODO Fix message layout
+        await message.channel.send(f'''_Title:_ {work.title}\n_Author:_ {work.user.name}\n_Tags:_ {', '.join(work.tags)}''')  # noqa
 
         for url in image_urls:
             filename = url.rsplit('/', 1)[-1]
@@ -49,7 +47,7 @@ async def handle(message: discord.Message):
                                                    config.get('DOWNLOAD_PATH'))
 
             async with message.channel.typing():
-                await send_image(message, downloaded_file)
+                await send_image(message, downloaded_file, is_nsfw)
 
 
 async def download_image(url: str, filename: str, path: str):
@@ -68,12 +66,14 @@ async def download_image(url: str, filename: str, path: str):
     return image_file
 
 
-async def send_image(message: discord.Message, image_file: Path):
+async def send_image(message: discord.Message, image_file: Path,
+                     is_nsfw: bool):
     if not image_file.exists():
         return
 
     logging.debug(f'Sending {image_file} to {message.channel.name} at {message.channel.guild.name}')  # noqa
-    await message.channel.send(file=discord.File(str(image_file)))
+    await message.channel.send(file=discord.File(str(image_file),
+                                                 spoiler=is_nsfw))
 
     logging.debug(f'Removing {image_file} from the local cache')
     image_file.unlink()
