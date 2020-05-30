@@ -209,3 +209,9 @@ dmypy.json
 
 # venv virtual environment directory
 env/
+
+# .env environment variables file
+.env
+
+# Default folder for storing image cache
+files/
