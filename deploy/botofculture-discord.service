@@ -1,0 +1,22 @@
+[Unit]
+Description="botofculture Discord bot"
+
+[Service]
+Type=simple
+Restart=on-failure
+
+# Reminder: The following configuration only serves as example. Please tailor
+# them to match your environment.
+
+# User who will run the bot in the environment
+User=botofculture
+# Where the bot is installed
+WorkingDirectory=/opt/botofculture-discord
+# Path to the .env that contains environment variables required by the bot
+EnvironmentFile=/opt/botofculture-discord/.env
+# The command to start the bot
+ExecStart=/opt/botofculture-discord/env/bin/python \
+    /opt/botofculture-discord/botofculture.py
+
+[Install]
+WantedBy=multi-user.target
