@@ -26,6 +26,7 @@ async def handle(message: discord.Message):
     if not work_ids:
         return
 
+    # OAuth tokens (access & refresh) are cached by API object
     await api.login(config.get('PIXIV_USERNAME'),
                     config.get('PIXIV_PASSWORD'))
 
@@ -73,4 +74,6 @@ async def send_image(message: discord.Message, image_file: Path):
 
     logging.debug(f'Sending {image_file} to {message.channel.name} at {message.channel.guild.name}')  # noqa
     await message.channel.send(file=discord.File(str(image_file)))
+
+    logging.debug(f'Removing {image_file} from the local cache')
     image_file.unlink()
