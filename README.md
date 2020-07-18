@@ -3,7 +3,7 @@
 > Yet another Discord bot for *cultured* users.
 
 A bot that fetches images from URLs and post the images to a Discord channel.
-Currently only supports images from [Pixiv](https://www.pixiv.net).
+Currently only supports images from [Pixiv](https://www.pixiv.net) and [Twitter](https://twitter.com/).
 
 ## Prerequisites
 
@@ -48,6 +48,10 @@ echo "DEBUG=False" >> .env
 echo "DISCORD_TOKEN=YOUR_DISCORD_BOT_TOKEN" >> .env
 echo "PIXIV_USERNAME=YOUR_PIXIV_USERNAME" >> .env
 echo "PIXIV_PASSWORD=YOUR_PIXIV_PASSWORD" >> .env
+echo "TWITTER_CONSUMER_KEY=YOUR_TWITTER_CONSUMER_KEY" >> .env
+echo "TWITTER_CONSUMER_SECRET=YOUR_TWITTER_CONSUMER_SECRET" >> .env
+echo "TWITTER_TOKEN_KEY=YOUR_TWITTER_TOKEN_KEY" >> .env
+echo "TWITTER_TOKEN_SECRET=YOUR_TWITTER_TOKEN_SECRET" >> .env
 ```
 
 Run the bot manually:
