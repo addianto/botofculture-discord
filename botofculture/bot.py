@@ -1,4 +1,5 @@
 from . import pixiv
+from . import twitter_service
 import discord
 import logging
 import sys
@@ -21,6 +22,7 @@ async def on_message(message: discord.Message):
     logging.debug(f'> {message.content}')
 
     await pixiv.handle(message)
+    await twitter_service.handle(message)
 
 
 @client.event
@@ -31,3 +33,5 @@ async def on_ready():
 
 def run(token: str):
     client.run(token)
+
+
