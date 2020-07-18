@@ -58,9 +58,6 @@ async def download_image(url: str, filename: str, path: str):
     storage_dir = Path(path)
     image_file = storage_dir.joinpath(filename)
 
-    if not storage_dir.exists():
-        storage_dir.mkdir()
-
     if not image_file.exists():
         logging.debug(f'Downloading {url} to {str(image_file)}')
         await api.download(url, fname=filename, path=path)
