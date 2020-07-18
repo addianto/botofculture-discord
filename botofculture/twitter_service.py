@@ -32,12 +32,15 @@ async def handle(message: discord.message):
         except:
             return
 
-    print(statuses_data)
     for status_data in statuses_data:
+        user_data = status_data.get('user')
+        text = status_data.get('text')
+        await message.channel.send(
+            f'''_Text:_ {text}\n_Author:_ {user_data.get('name')}''')
         medias = status_data.get('media')
         for media in medias:
             file_url = media.get('media_url_https')
-            await parse_image(file_url, message)
+            await parse_image(file_url, message, is_nsfw(status_data))
 
 
 async def get_status_data(status_id):
@@ -46,12 +49,18 @@ async def get_status_data(status_id):
         return tweet_detail
 
 
-async def parse_image(file_url, message: discord.message):
+async def parse_image(file_url, message: discord.message, is_nsfw):
     file_path = download_image(file_url)
     async with message.channel.typing():
-        await send_image(message, file_path, False)
+        await send_image(message, file_path, is_nsfw)
 
 
 def download_image(url: str):
     file_name = wget.download(url, config.get('DOWNLOAD_PATH'))
     return Path(os.path.abspath(file_name))
+
+
+def is_nsfw(status_data):
+    if status_data.get('possibly_sensitive'):
+        return status_data.get('possibly_sensitive')
+    return False
