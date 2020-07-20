@@ -20,7 +20,7 @@ api = twitter.Api(consumer_key=TWITTER_CONSUMER_KEY, consumer_secret=TWITTER_CON
                   access_token_key=TWITTER_TOKEN_KEY, access_token_secret=TWITTER_TOKEN_SECRET)
 
 
-async def handle(message: discord.message):
+async def handle(message: discord.Message):
     statuses_id = TWITTER_URL_PATTERN.findall(message.content)
 
     if not statuses_id:
@@ -43,13 +43,13 @@ async def handle(message: discord.message):
             await parse_image(file_url, message, is_nsfw(status_data))
 
 
-async def get_status_data(status_id):
+async def get_status_data(status_id: str):
     tweet_detail = api.GetStatus(status_id=status_id).AsDict()
     if tweet_detail['media']:
         return tweet_detail
 
 
-async def parse_image(file_url, message: discord.message, is_nsfw):
+async def parse_image(file_url, message: discord.Message, is_nsfw: bool):
     file_path = download_image(file_url)
     async with message.channel.typing():
         await send_image(message, file_path, is_nsfw)
@@ -60,7 +60,7 @@ def download_image(url: str):
     return Path(os.path.abspath(file_name))
 
 
-def is_nsfw(status_data):
+def is_nsfw(status_data: dict):
     if status_data.get('possibly_sensitive'):
         return status_data.get('possibly_sensitive')
     return False
