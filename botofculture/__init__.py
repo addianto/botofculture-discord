@@ -5,7 +5,7 @@ __title__ = 'botofculture-discord'
 __author__ = 'addianto'
 __copyright__ = f'Copyright (c) 2020 {__author__}'
 __license__ = 'MIT'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 from . import bot, config
 import logging

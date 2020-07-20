@@ -9,6 +9,10 @@ config = {
                                os.path.join(os.path.curdir, 'files')),
     'PIXIV_USERNAME': os.getenv('PIXIV_USERNAME'),
     'PIXIV_PASSWORD': os.getenv('PIXIV_PASSWORD'),
+    'TWITTER_CONSUMER_KEY': os.getenv('TWITTER_CONSUMER_KEY'),
+    'TWITTER_CONSUMER_SECRET': os.getenv('TWITTER_CONSUMER_SECRET'),
+    'TWITTER_TOKEN_KEY': os.getenv('TWITTER_TOKEN_KEY'),
+    'TWITTER_TOKEN_SECRET': os.getenv('TWITTER_TOKEN_SECRET')
 }
 
 

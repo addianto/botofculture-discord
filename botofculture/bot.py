@@ -1,4 +1,6 @@
 from . import pixiv
+from . import twitter_service
+from .response_service import create_image_folder_if_not_exists
 import discord
 import logging
 import sys
@@ -20,7 +22,10 @@ async def on_message(message: discord.Message):
     logging.debug(f'{message.author.name} AKA {message.author.display_name} at {message.guild.name}')  # noqa
     logging.debug(f'> {message.content}')
 
+    create_image_folder_if_not_exists()
+
     await pixiv.handle(message)
+    await twitter_service.handle(message)
 
 
 @client.event
@@ -31,3 +36,5 @@ async def on_ready():
 
 def run(token: str):
     client.run(token)
+
+

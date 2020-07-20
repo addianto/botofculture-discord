@@ -5,6 +5,8 @@ import logging
 import pixivpy_async
 import re
 
+from .response_service import send_image
+
 PIXIV_URL_PATTERN = re.compile(r'pixiv.net\/.*artworks\/(\d*)')
 PIXIV_IMG_URL_PATTERN = re.compile(r'i\.pximg\.net\S*\w')
 api = pixivpy_async.PixivAPI()
@@ -56,9 +58,6 @@ async def download_image(url: str, filename: str, path: str):
     storage_dir = Path(path)
     image_file = storage_dir.joinpath(filename)
 
-    if not storage_dir.exists():
-        storage_dir.mkdir()
-
     if not image_file.exists():
         logging.debug(f'Downloading {url} to {str(image_file)}')
         await api.download(url, fname=filename, path=path)
@@ -66,14 +65,3 @@ async def download_image(url: str, filename: str, path: str):
     return image_file
 
 
-async def send_image(message: discord.Message, image_file: Path,
-                     is_nsfw: bool):
-    if not image_file.exists():
-        return
-
-    logging.debug(f'Sending {image_file} to {message.channel.name} at {message.channel.guild.name}')  # noqa
-    await message.channel.send(file=discord.File(str(image_file),
-                                                 spoiler=is_nsfw))
-
-    logging.debug(f'Removing {image_file} from the local cache')
-    image_file.unlink()
