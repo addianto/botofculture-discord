@@ -36,5 +36,3 @@ async def on_ready():
 
 def run(token: str):
     client.run(token)
-
-

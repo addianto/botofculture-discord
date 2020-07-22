@@ -16,8 +16,10 @@ TWITTER_TOKEN_SECRET = config.get('TWITTER_TOKEN_SECRET')
 
 TWITTER_URL_PATTERN = re.compile(r'twitter.com\/.*status\/(\d*)')
 
-api = twitter.Api(consumer_key=TWITTER_CONSUMER_KEY, consumer_secret=TWITTER_CONSUMER_SECRET,
-                  access_token_key=TWITTER_TOKEN_KEY, access_token_secret=TWITTER_TOKEN_SECRET)
+api = twitter.Api(consumer_key=TWITTER_CONSUMER_KEY,
+                  consumer_secret=TWITTER_CONSUMER_SECRET,
+                  access_token_key=TWITTER_TOKEN_KEY,
+                  access_token_secret=TWITTER_TOKEN_SECRET)
 
 
 async def handle(message: discord.Message):
