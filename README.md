@@ -14,6 +14,7 @@ The following is the requirements for running the bot:
     Example: `sudo apt-get install python3-venv`
 - Discord token
 - Pixiv credentials (username & password)
+- Twitter API credentials
 
 ## Setup
 
