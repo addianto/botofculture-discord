@@ -14,6 +14,7 @@ The following is the requirements for running the bot:
     Example: `sudo apt-get install python3-venv`
 - Discord token
 - Pixiv credentials (username & password)
+- Twitter API credentials
 
 ## Setup
 
@@ -63,7 +64,7 @@ python botofculture.py
 
 If you want to run the bot in background, please run it under `screen` or
 `tmux` session. Alternatively, you can also setup a `systemd` service that
-will run the bot as a service. An example of `systemd` configuration file
+will run the bot as a service. A template of `systemd` configuration file
 is available in [`deploy/`](deploy/botofculture-discord.service) directory.
 
 ## Credits

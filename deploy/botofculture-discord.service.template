@@ -9,14 +9,13 @@ Restart=on-failure
 # them to match your environment.
 
 # User who will run the bot in the environment
-User=botofculture
-# Where the bot is installed
-WorkingDirectory=/opt/botofculture-discord
-# Path to the .env that contains environment variables required by the bot
-EnvironmentFile=/opt/botofculture-discord/.env
+User={{ bot_os_user }}
+# The location where the bot is installed
+WorkingDirectory={{ bot_workdir }}
+# Path to the .env file that contains environment variables required by the bot
+EnvironmentFile={{ bot_workdir }}/.env
 # The command to start the bot
-ExecStart=/opt/botofculture-discord/env/bin/python \
-    /opt/botofculture-discord/botofculture.py
+ExecStart={{ bot_python_bin }} {{ bot_workdir }}/botofculture.py
 
 [Install]
 WantedBy=multi-user.target

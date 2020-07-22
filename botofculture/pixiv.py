@@ -63,5 +63,3 @@ async def download_image(url: str, filename: str, path: str):
         await api.download(url, fname=filename, path=path)
 
     return image_file
-
-
