@@ -13,7 +13,7 @@ The following is the requirements for running the bot:
   - On Debian-based system, you need to install `python3-venv` separately.
     Example: `sudo apt-get install python3-venv`
 - Discord token
-- Pixiv credentials (username & password)
+- Pixiv credentials (refresh token)
 - Twitter API credentials
 
 ## Setup
@@ -47,8 +47,7 @@ installation folder:
 ```bash
 echo "DEBUG=False" >> .env
 echo "DISCORD_TOKEN=YOUR_DISCORD_BOT_TOKEN" >> .env
-echo "PIXIV_USERNAME=YOUR_PIXIV_USERNAME" >> .env
-echo "PIXIV_PASSWORD=YOUR_PIXIV_PASSWORD" >> .env
+echo "PIXIV_REFRESH_TOKEN=YOUR_REFRESH_TOKEN_FROM_OAUTH2_LOGIN_FLOW" >> .env
 echo "TWITTER_CONSUMER_KEY=YOUR_TWITTER_CONSUMER_KEY" >> .env
 echo "TWITTER_CONSUMER_SECRET=YOUR_TWITTER_CONSUMER_SECRET" >> .env
 echo "TWITTER_TOKEN_KEY=YOUR_TWITTER_TOKEN_KEY" >> .env

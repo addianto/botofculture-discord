@@ -29,8 +29,7 @@ async def handle(message: discord.Message):
         return
 
     # OAuth tokens (access & refresh) are cached by API object
-    await api.login(config.get('PIXIV_USERNAME'),
-                    config.get('PIXIV_PASSWORD'))
+    await api.login(refresh_token=config.get('PIXIV_REFRESH_TOKEN'))
 
     works = map(lambda json: json.response[0],
                 filter(lambda json: json.status == 'success',
